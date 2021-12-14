@@ -50,10 +50,10 @@ try{
 
         ?>
         <form class="registerForm" method="POST" onsubmit="<?=verifyPassword($pdo)?>">
-            <input type="text" name="username" required><br>
-            <input type="password" name="password" required><br>
-            <input type="password" name="passwordVerified" required><br>
-            <input type="email" name="mail" required><br>
+            <input type="text" name="username" required placeholder="Username"><br>
+            <input type="password" name="password" required placeholder="Password"><br>
+            <input type="password" name="passwordVerified" required placeholder="Confirm Password"><br>
+            <input type="email" name="mail" required placeholder="E-mail"><br>
             <input type="submit" name="button" value="Créer un compte"><br>
         </form>
     </body>
