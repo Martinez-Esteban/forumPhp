@@ -17,7 +17,7 @@ try{
 <html>
     <head>
         <title>Register</title>
-        <link href='./register.css' rel='style'>
+        <link href='./register.css' rel='stylesheet'>
     </head>
     <body>
         <?php
