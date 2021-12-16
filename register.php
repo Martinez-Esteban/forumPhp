@@ -1,5 +1,4 @@
 <?php
-
 $dsn = "mysql:host=localhost:3306;dbname=forum";
 $username = "root";
 $password = "";
@@ -27,7 +26,6 @@ try{
                 addUser($pdo);
                 return true;
             } else {
-                header("Location: ./login.php");
                 return false;
             }
         }
@@ -51,11 +49,12 @@ try{
 
         ?>
         <form class="registerForm" method="POST" onsubmit="<?=verifyPassword($pdo)?>">
-            <input type="text" name="username" required placeholder="Username"><br>
-            <input type="password" name="password" required placeholder="Password"><br>
-            <input type="password" name="passwordVerified" required placeholder="Confirm Password"><br>
+            <input type="text" name="username" required placeholder="Nom d'utilisateur"><br>
+            <input type="password" name="password" required placeholder="Mot de passe"><br>
+            <input type="password" name="passwordVerified" required placeholder="Confirmation du mot de passe"><br>
             <input type="email" name="mail" required placeholder="E-mail"><br>
             <input type="submit" name="button" value="Créer un compte"><br>
         </form>
+        <a href="./login.php">Login</a>
     </body>
 </html>

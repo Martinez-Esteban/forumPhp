@@ -1,13 +1,32 @@
 <?php
-$mysqli = new PDO("mysql:host=127.0.0.1;dbname=forum;charset=utf8", "root", "");
+
+$dsn = "mysql:host=localhost:3306;dbname=forum";
+$username = "root";
+$password = "";
+
+try{
+    $pdo = new PDO($dsn, $username, $password);
+} catch (PDOException $e){
+    echo $e->getMessage();
+    die();
+}
 
 if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
     if(!empty($_POST['article_titre']) AND !empty($_POST['article_contenu'])) {
 
         $article_titre = htmlspecialchars($_POST['article_titre']);
         $article_contenu = htmlspecialchars($_POST['article_contenu']);
-        $ins = $mysqli->prepare('INSERT INTO articles (title, description, date) VALUES (?, ?, NOW())');
-        $ins->execute(array($article_titre, $article_contenu));
+
+        $query = 'INSERT INTO articles (title, description, date, userId) VALUES (:title, :desc, NOW(), 1)';
+        
+        $datas = [
+            'title' => $article_titre,
+            'desc' => $article_contenu,
+        ];
+
+        $ins = $pdo->prepare($query);
+        $ins->execute($datas);
+
         $message = 'Votre article a été posté';
     
     } else {
@@ -24,11 +43,13 @@ if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
 </head>
 <body>
     <form method="POST">
-        <input type="text" name="article_titre" placeholder="Titre de l'article" /><br />
-        <textarea name="article_contenu" placeholder="Contenu de l'article"></textarea><br />
+        <input type="text" name="article_titre" placeholder="Titre de l'article" required/><br />
+        <textarea name="article_contenu" placeholder="Contenu de l'article" required></textarea><br />
         <input type="submit" value="Publier l'article" />
     </form>
     <br />
     <?php if(isset($message)) { echo $message; } ?>
+    <br>
+    <a href="./posts.php">Retour</a>
 </body>
 </html>

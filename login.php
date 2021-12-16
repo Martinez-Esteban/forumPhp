@@ -1,5 +1,4 @@
 <?php
-
 $dsn = "mysql:host=localhost:3306;dbname=forum";
 $username = "root";
 $password = "";
@@ -44,9 +43,10 @@ try{
        
         ?>
         <form class="registerForm" method="POST">
-            <input type="text" name="username" required><br>
-            <input type="password" name="password" required><br>
-            <input type="submit" name="button" value="login"><br>
+            <input type="text" name="username" placeholder="Nom d'utilisateur" required><br>
+            <input type="password" name="password" placeholder="Mot de passe" required><br>
+            <input type="submit" name="button" value="Connexion"><br>
         </form>
+        <a href="./register.php">Register</a>
     </body>
 </html>

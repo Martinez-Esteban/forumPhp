@@ -11,9 +11,11 @@ $articles = $mysqli->query('SELECT * FROM articles ORDER BY date DESC');
     <meta charset="utf-8">
 </head>
 <body>
+    <a href="./newArticle.php">Nouvel Article</a>
+    <a href="./index.php">Acceuil</a>
     <ul>
         <?php while($a = $articles->fetch()) { ?>
-        <li><a href="article.php?articleId=<?= $a['articleId'] ?>"><?= $a['titre'] ?></a></li>
+        <li><a href="article.php?articleId=<?= $a['articleId'] ?>"><?= $a['title'] ?> - <?= $a['date'] ?></a></li>
         <?php } ?>
     </ul>
 </body>
