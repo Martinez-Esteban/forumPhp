@@ -17,7 +17,7 @@ try{
 <html>
     <head>
         <title>login</title>
-        <link href='./login.css' rel='style'>
+        <link href='./login.css' rel='stylesheet'>
     </head>
     <body>
         <?php
