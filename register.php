@@ -27,6 +27,7 @@ try{
                 addUser($pdo);
                 return true;
             } else {
+                header("Location: ./login.php");
                 return false;
             }
         }
