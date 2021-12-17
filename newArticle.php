@@ -27,7 +27,7 @@ if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
         $ins = $pdo->prepare($query);
         $ins->execute($datas);
 
-        $message = 'Votre article a été posté';
+        header('Location: ./posts.php');
     
     } else {
         $message = 'Veuillez remplir tous les champs';
