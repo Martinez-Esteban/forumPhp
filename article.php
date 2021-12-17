@@ -1,14 +1,23 @@
 <?php
-$mysqli = new PDO("mysql:host=127.0.0.1;dbname=forum;charset=utf8", "root", "");
+$dsn = "mysql:host=localhost:3306;dbname=forum";
+$username = "root";
+$password = "";
 
-if(isset($_GET['article_id']) AND !empty($_GET['article_id'])) {
-    $get_id = htmlspecialchars($_GET['article_id']);
-    $article = $mysqli->prepare('SELECT * FROM articles WHERE article_id = ?');
+try{
+    $pdo = new PDO($dsn, $username, $password);
+} catch (PDOException $e){
+    echo $e->getMessage();
+    die();
+}
+
+if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
+    $get_id = htmlspecialchars($_GET['articleId']);
+    $article = $pdo->prepare('SELECT * FROM articles WHERE articleId = ?');
     $article->execute(array($get_id));
     if($article->rowCount() == 1) {
         $article = $article->fetch();
-        $titre = $article['titre'];
-        $content = $article['content'];
+        $titre = $article['title'];
+        $content = $article['description'];
     } else {
         die('Cet article n\'existe pas');
     }
