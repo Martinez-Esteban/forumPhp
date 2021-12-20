@@ -5,6 +5,7 @@ if ($_SESSION["newsession"])
 {
     echo "Bienvenue dans notre forum " . $_SESSION["newsession"];
 ?>
+    <a href="./profil.php">Profil</a>
     <hr>
     <a href="./posts.php">Articles</a>
     <hr>
