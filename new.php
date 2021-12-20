@@ -21,15 +21,18 @@ try{
 
 if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
     if(!empty($_POST['article_titre']) AND !empty($_POST['article_contenu'])) {
+        $id = $pdo->query("SELECT id FROM user WHERE username = '" . $_SESSION['newsession'] . "'");
+        $result = $id->fetch();
 
         $article_titre = htmlspecialchars($_POST['article_titre']);
         $article_contenu = htmlspecialchars($_POST['article_contenu']);
 
-        $query = 'INSERT INTO articles (title, description, date, userId) VALUES (:title, :desc, NOW(), 1)';
+        $query = "INSERT INTO articles (title, description, date, userId) VALUES (:title, :desc, NOW(), :uid)";
         
         $datas = [
             'title' => $article_titre,
             'desc' => $article_contenu,
+            'uid' => $result['id'],
         ];
 
         $ins = $pdo->prepare($query);
@@ -46,7 +49,7 @@ if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>NewArticle</title>
+    <title>Nouvel Article</title>
     <meta charset="utf-8">
 </head>
 <body>
@@ -58,6 +61,6 @@ if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
     <br />
     <?php if(isset($message)) { echo $message; } ?>
     <br>
-    <a href="./posts.php">Retour</a>
+    <a href="./home.php">Retour</a>
 </body>
 </html>

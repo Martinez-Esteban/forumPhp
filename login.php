@@ -30,7 +30,7 @@ try{
             $results->execute($datas);
             $results=$results->fetchAll()[0]['password'];
             if (password_verify($_POST['password'],$results)){
-                header("Location: ./index.php");
+                header("Location: ./home.php");
                 $_SESSION["newsession"]= $_POST['username'] ;
             }else{
                 echo "mauvais mot de passe ou utilisateur";

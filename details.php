@@ -8,7 +8,7 @@ if ($_SESSION["newsession"])
 {
 ?>
     <hr>
-    <a href="./posts.php">retour</a>
+    <a href="./home.php">retour</a>
     <hr>
 
 <?php
