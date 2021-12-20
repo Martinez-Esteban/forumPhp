@@ -8,11 +8,11 @@ if ($_SESSION["newsession"])
     <hr>
     <a href="./posts.php">Articles</a>
     <hr>
-    <a href="./deconnexion.php">Déconnexion</a>
+    <a href="./déconnexion.php">Déconnexion</a>
 
 <?php
 } else {
-    header('Location: ./login.php');
+    echo "T PA CO";
 }
 ?>
 

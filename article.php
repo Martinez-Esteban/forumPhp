@@ -3,6 +3,21 @@ $dsn = "mysql:host=localhost:3306;dbname=forum";
 $username = "root";
 $password = "";
 
+session_start();
+if ($_SESSION["newsession"])
+{
+?>
+    <hr>
+    <a href="./index.php">Acceuil</a>
+    <hr>
+    <a href="./déconnexion.php">Déconnexion</a>
+
+<?php
+} else {
+    header('location: ../login.php');
+}
+?>
+<?php
 try{
     $pdo = new PDO($dsn, $username, $password);
 } catch (PDOException $e){

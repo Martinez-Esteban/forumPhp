@@ -1,14 +1,16 @@
 <?php
-session_start();
-
 $mysqli = new PDO("mysql:host=127.0.0.1;dbname=forum;charset=utf8", "root", "");
-
-$articles = $mysqli->query('SELECT * FROM articles ORDER BY date DESC');
-
-if ($_SESSION["newsession"])
-{
-    echo "Bienvenue dans notre forum " . $_SESSION["newsession"];
+session_start();
+if ($_SESSION["newsession"]) {
 ?>
+
+<?php
+} else {
+    header('location: ../login.php');
+}
+$articles = $mysqli->query('SELECT * FROM articles ORDER BY date DESC');
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +20,7 @@ if ($_SESSION["newsession"])
 <body>
     <a href="./newArticle.php">Nouvel Article</a>
     <a href="./index.php">Acceuil</a>
+    <a href="./déconnexion.php">déconnexion</a>
     <ul>
         <?php while($a = $articles->fetch()) { ?>
         <li><a href="article.php?articleId=<?= $a['articleId'] ?>"><?= $a['title'] ?> - <?= $a['date'] ?></a></li>
@@ -25,9 +28,3 @@ if ($_SESSION["newsession"])
     </ul>
 </body>
 </html>
-
-<?php
-} else {
-    //header('Location: ./login.php');
-}
-?>

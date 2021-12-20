@@ -12,9 +12,19 @@
         echo $e->getMessage();
         die();
     }
-
+    session_start();
+    if ($_SESSION["newsession"]) {
 ?>
+    <hr>
+    <a href="./index.php">Acceuil</a>
+    <hr>
+    <a href="./déconnexion.php">Déconnexion</a>
 
+<?php
+    } else {
+        header('location: ../login.php');
+    }
+?>
 <head>
     <title>login</title>
     <link href='./login.css' rel='style'>
