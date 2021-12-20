@@ -10,9 +10,7 @@ if ($_SESSION["newsession"]) {
 
 <?php
   // On récupère les informations de l'utilisateur connecté
-  $afficher_profil = $mysqli->query("SELECT *
-    FROM user 
-    WHERE username =".$_SESSION["newsession"]);
+  $afficher_profil = $mysqli->query("SELECT * FROM user WHERE username =" . $_SESSION["newsession"]);
   $a = $afficher_profil->fetch()
 ?>
 

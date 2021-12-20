@@ -1,9 +1,14 @@
 <?php
+session_start();
+
 $mysqli = new PDO("mysql:host=127.0.0.1;dbname=forum;charset=utf8", "root", "");
 
 $articles = $mysqli->query('SELECT * FROM articles ORDER BY date DESC');
-?>
 
+if ($_SESSION["newsession"])
+{
+    echo "Bienvenue dans notre forum " . $_SESSION["newsession"];
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,3 +25,9 @@ $articles = $mysqli->query('SELECT * FROM articles ORDER BY date DESC');
     </ul>
 </body>
 </html>
+
+<?php
+} else {
+    //header('Location: ./login.php');
+}
+?>

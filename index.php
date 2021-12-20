@@ -12,7 +12,7 @@ if ($_SESSION["newsession"])
 
 <?php
 } else {
-    echo "T PA CO";
+    header('Location: ./login.php');
 }
 ?>
 
