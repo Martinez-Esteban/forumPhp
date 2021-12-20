@@ -1,4 +1,12 @@
 <?php
+session_start();
+if ($_SESSION["newsession"]) {
+?>
+
+<?php
+} else {
+    header('location: ../login.php');
+}
 
 $dsn = "mysql:host=localhost:3306;dbname=forum";
 $username = "root";

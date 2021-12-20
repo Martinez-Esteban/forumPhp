@@ -8,9 +8,8 @@ if ($_SESSION["newsession"])
 {
 ?>
     <hr>
-    <a href="./index.php">Acceuil</a>
+    <a href="./posts.php">retour</a>
     <hr>
-    <a href="./déconnexion.php">Déconnexion</a>
 
 <?php
 } else {

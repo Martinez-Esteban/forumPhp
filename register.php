@@ -46,7 +46,6 @@ try{
             $results = $pdo->prepare($query);
             $results->execute($datas);
         }
-
         ?>
         <form class="registerForm" method="POST" onsubmit="<?=verifyPassword($pdo)?>">
             <input type="text" name="username" required placeholder="Nom d'utilisateur"><br>
