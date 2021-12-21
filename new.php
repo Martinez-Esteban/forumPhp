@@ -1,9 +1,7 @@
 <?php
 session_start();
 if ($_SESSION["newsession"]) {
-?>
 
-<?php
 } else {
     header('location: ../login.php');
 }
