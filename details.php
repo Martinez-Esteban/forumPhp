@@ -4,19 +4,16 @@ $username = "root";
 $password = "";
 
 session_start();
-if ($_SESSION["newsession"])
-{
+if ($_SESSION["newsession"]) {
 ?>
     <hr>
     <a href="./home.php">retour</a>
     <hr>
-
 <?php
 } else {
     header('location: ../login.php');
 }
-?>
-<?php
+
 try{
     $pdo = new PDO($dsn, $username, $password);
 } catch (PDOException $e){
@@ -25,13 +22,15 @@ try{
 }
 
 if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
-    $get_id = htmlspecialchars($_GET['articleId']);
-    $article = $pdo->prepare('SELECT * FROM articles WHERE articleId = ?');
-    $article->execute(array($get_id));
+    $get_article_id = htmlspecialchars($_GET['articleId']);
+    $article = $pdo->prepare("SELECT * FROM articles WHERE articleId = '" . $get_article_id . "'");
+    $article->execute();
     if($article->rowCount() == 1) {
-        $article = $article->fetch();
-        $titre = $article['title'];
-        $content = $article['description'];
+        $a = $article->fetch();
+        $uid = $a['userId'];
+        $query = $pdo->prepare("SELECT username FROM user WHERE id = '". $uid . "'");
+        $query->execute();
+        $user_name = $query->fetch();
     } else {
         die('Cet article n\'existe pas');
     }
@@ -46,7 +45,8 @@ if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
     <meta charset="utf-8">
 </head>
 <body>
-    <h1><?= $titre ?></h1>
-    <p><?= $content ?></p>
+    <h1><?= $a['title'] ?></h1>
+    <p><?= $a['description'] ?></p>
+    <p><i><?= $a['date'] ?></i></p> - <a href=<?php echo '"account.php?userId=' . $uid . '"' ?>><b><?= $user_name['username'] ?></b></a>
 </body>
 </html>
