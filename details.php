@@ -21,6 +21,7 @@ try{
     die();
 }
 
+// On récupère l'article passé en paramètre
 if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
     $get_article_id = htmlspecialchars($_GET['articleId']);
     $article = $pdo->prepare("SELECT * FROM articles WHERE articleId = '" . $get_article_id . "'");
@@ -48,5 +49,14 @@ if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
     <h1><?= $a['title'] ?></h1>
     <p><?= $a['description'] ?></p>
     <p><i><?= $a['date'] ?></i></p> - <a href=<?php echo '"account.php?userId=' . $uid . '"' ?>><b><?= $user_name['username'] ?></b></a>
+    <?php 
+
+    if($_SESSION['newsession'] == $user_name['username'] || $_SESSION['newsession'] == 'demo') { ?>
+
+        <form method="POST" action=<?php echo '"dlpost.php?articleId=' . $a['articleId'] . '"' ?>>
+            <input type="submit" name=<?php echo '"delete_post_' . $a['articleId'] . '"' ?> value="Supprimer l'article"></input> 
+        </form>
+
+    <?php } ?>
 </body>
 </html>
