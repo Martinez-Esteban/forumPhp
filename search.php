@@ -3,7 +3,7 @@
 $mysqli = new PDO("mysql:host=127.0.0.1;dbname=forum;charset=utf8", "root", "");
 
 if(isset($_GET['search'])){
-    echo("Voici les résultats de votre recherche!");
+    echo("Voici les résultats pour : " . $_GET['search']);
     $delete_user = $mysqli->prepare("SELECT * FROM articles WHERE title LIKE '%".$_GET['search']."%'");
     $delete_user ->execute();
     echo "<ul>";
