@@ -12,6 +12,6 @@ if(isset($_GET['search'])){
     }
     echo "</ul>";  
 } else {
-    echo "c'est la sauce";
+    echo "something went wrong";
 }
 ?>
