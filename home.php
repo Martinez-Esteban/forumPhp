@@ -19,6 +19,10 @@ $articles = $mysqli->query('SELECT * FROM articles ORDER BY date DESC');
     <ul>
         <li><a href="./account.php">Profil</a>
         <li><a href="./new.php">Nouvel Article</a>
+        <?php
+        if($_SESSION['newsession'] == 'demo') { ?>
+        <li><a href="panelAdmin.php">Administration</a>
+        <?php } ?>
         <li><a href="./deconnexion.php">Déconnexion</a>
     </ul>
     <form action="search.php" method="GET">
