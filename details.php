@@ -54,7 +54,10 @@ if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
     if($_SESSION['newsession'] == $user_name['username'] || $_SESSION['newsession'] == 'demo') { ?>
 
         <form method="POST" action=<?php echo '"dlpost.php?articleId=' . $a['articleId'] . '"' ?>>
-            <input type="submit" name=<?php echo '"delete_post_' . $a['articleId'] . '"' ?> value="Supprimer l'article"></input> 
+            <input type="submit" name=<?php echo '"delete_post_' . $a['articleId'] . '"' ?> value="Supprimer l'article">
+        </form>
+        <form method="POST" action=<?php echo '"edit.php?title=' . $a['title'] . ';content=' . $a['description'] . '"' ?>>
+            <input type="submit" name=<?php echo '"edit_post_' . $a['articleId'] . '"' ?> value="Modifier l'article">
         </form>
 
     <?php } ?>
