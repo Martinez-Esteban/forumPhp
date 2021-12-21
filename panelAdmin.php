@@ -7,7 +7,7 @@ if ($_SESSION["newsession"] == "demo") {
     header('location: ../home.php');
 }
 
-if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
+if(isset($_GET['userId'])) {
         $id = htmlspecialchars($_GET['userId']);
         $delete_user = $mysqli->query("DELETE FROM user WHERE id = '" . $id . "'; DELETE FROM articles WHERE userId = '" . $id . "'");
         $delete_user->execute();
