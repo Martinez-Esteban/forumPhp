@@ -35,7 +35,7 @@ try{
             $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
             $mail = $_POST['mail'];
 
-            $query = 'INSERT INTO user(username, password, email) VALUES(:username, :password, :mail)';
+            $query = 'INSERT INTO user(username, password, email, creationDate) VALUES(:username, :password, :mail, NOW())';
 
             $datas = [
                 'username' => $username,
