@@ -36,8 +36,6 @@ try{
                 echo "mauvais mot de passe ou utilisateur";
                 
             }
-            
-            
         }
         
        

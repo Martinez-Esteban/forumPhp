@@ -6,17 +6,21 @@ if ($_SESSION["newsession"]) {
 } else {
     header('location: ../login.php');
 }
-?>
 
-<?php
-
+if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
+	$id = htmlspecialchars($_GET['userId']);
+	$afficher_profil = $mysqli->query("SELECT * FROM user WHERE id = '" . $id . "'");
+	$afficher_profil->execute();
+} else {
 	// On récupère les informations de l'utilisateur connecté
 	$afficher_profil = $mysqli->query("SELECT * FROM user WHERE username = '" . $_SESSION["newsession"] . "'");
+}
 	$a = $afficher_profil->fetch();
-
+	
 	$error = "";
 
-	if(isset($_POST['oui'])) {
+	// Change password function
+	if(isset($_POST['confirmButton'])) {
 		global $a;
 		global $mysqli;
 		$pwdtest = password_hash($_POST['oldpwd'], PASSWORD_BCRYPT);
@@ -45,7 +49,7 @@ if ($_SESSION["newsession"]) {
 		<h2>Votre profil :</h2>
 		<div>Quelques informations sur vous : </div>
     	<ul>
-			<li>Nom d'utilisateur : <b><?= $_SESSION["newsession"];?></b></li>
+			<li>Nom d'utilisateur : <b><?= $a['username'];?></b></li>
             <li>Votre mail est : <b><?php echo $a['email'] ?></b></li>
 		</ul>
 		<h3>Changer de mot de passe :</h3>
@@ -53,7 +57,7 @@ if ($_SESSION["newsession"]) {
 			<input type="password" name="oldpwd" placeholder="Ancien mot de passe" required /><br>
 			<input type="password" name="newpwd" placeholder="Nouveau mot de passe" required /><br>
 			<input type="password" name="confirmpwd" placeholder="Confirmer nouveau mot de passe" required /><br>
-			<input type="submit" name="oui" value="Valider">
+			<input type="submit" name="confirmButton" value="Valider">
 		</form>
 		<?= $error ?>
 		<ul>
