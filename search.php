@@ -7,15 +7,11 @@ if(isset($_GET['search'])){
     $delete_user = $mysqli->prepare("SELECT * FROM articles WHERE title LIKE '%".$_GET['search']."%'");
     $delete_user ->execute();
     echo "<ul>";
-        while ($row = $delete_user->fetch()) {
-            echo "<li><a href=./details.php?articleId=".$row['articleId'].">".$row['title']."<br>".$row['description']."</a></li>";  
-        }
-    echo "</ul>";    
-    
+    while ($row = $delete_user->fetch()) {
+        echo "<li><b><a href=./details.php?articleId=".$row['articleId'].">".$row['title']."</a></b><br>".$row['description']."<br><i>".$row['date']."</i></li>";  
+    }
+    echo "</ul>";  
+} else {
+    echo "something went wrong";
 }
-else {
-    echo "c'est la sauce";
-}
-
-
 ?>

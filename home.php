@@ -16,13 +16,19 @@ $articles = $mysqli->query('SELECT * FROM articles ORDER BY date DESC');
     <meta charset="utf-8">
 </head>
 <body>
-    <a href="./account.php">Profil</a>
-    <a href="./new.php">Nouvel Article</a>
-    <a href="./deconnexion.php">Déconnexion</a>
+    <ul>
+        <li><a href="./account.php">Profil</a>
+        <li><a href="./new.php">Nouvel Article</a>
+        <?php
+        if($_SESSION['newsession'] == 'demo') { ?>
+        <li><a href="panelAdmin.php">Administration</a>
+        <?php } ?>
+        <li><a href="./deconnexion.php">Déconnexion</a>
+    </ul>
     <form action="search.php" method="GET">
-    <input id="search" name="search" type="text" placeholder="Type here">
-    <input id="submit" type="submit" value="Search">
-</form>
+        <input id="search" name="search" type="text" placeholder="Type here">
+        <input id="submit" type="submit" value="Search">
+    </form>
     <ul>
         <?php while($a = $articles->fetch()) { ?>
         <li><a href="details.php?articleId=<?= $a['articleId'] ?>"><?= $a['title'] ?> - <?= $a['date'] ?></a></li>
