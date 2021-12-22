@@ -2,6 +2,21 @@
 $mysqli = new PDO("mysql:host=127.0.0.1;dbname=forum;charset=utf8", "root", "");
 session_start();
 
+function rrmdir($dir) { 
+	if (is_dir($dir)) { 
+	$objects = scandir($dir);
+	foreach ($objects as $object) { 
+		if ($object != "." && $object != "..") { 
+		if (is_dir($dir. DIRECTORY_SEPARATOR .$object) && !is_link($dir."/".$object))
+			rrmdir($dir. DIRECTORY_SEPARATOR .$object);
+		else
+			unlink($dir. DIRECTORY_SEPARATOR .$object); 
+		} 
+	}
+	rmdir($dir); 
+	} 
+}
+
 // On vérifie si l'utilisateur est connecté
 if ($_SESSION["newsession"]) {
 
@@ -57,6 +72,25 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 		}
 	}
 
+	if(isset($_POST['validProfil'])){
+		try {
+			echo "try";
+			rrmdir("./images/forum/".$a['id']);
+		}catch(Exception $e){
+			echo "catch";
+		}
+		mkdir("./images/forum/".$a['id'], 0700);
+		$tempName = $_FILES['pp']['tmp_name'];
+		$name = $_FILES['pp']['name'];
+		move_uploaded_file($tempName, "./images/forum/".$a['id']."/".$name);
+		$path = "./images/forum/".$a['id']."/".$name;
+		$query = "UPDATE user SET pp = '" . $path . "' WHERE username = '" . $_SESSION['newsession'] . "'";
+		$update = $mysqli->prepare($query);
+		$update->execute();
+		echo "ici";
+		
+	}
+
 ?>
 <html lang="fr">
 	<head>
@@ -105,6 +139,11 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 			<input type="submit" name="confirmMail" value="Valider">
 		</form>
 
+		<form method="POST" enctype="multipart/form-data">
+			<input type="file" name="pp" placeholder="Nouvelle PP" /><br>
+			<input type="submit" name="validProfil" value="Valider">
+		</form>
+	
 		<?php echo $errorMail; } ?>
 
 		<ul>
