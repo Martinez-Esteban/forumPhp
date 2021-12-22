@@ -21,6 +21,7 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 	$a = $afficher_profil->fetch();
 	
 	$error = "";
+	$errorMail = "";
 
 	// Fonction pour changer le mot de passe
 	if(isset($_POST['confirmButton'])) {
@@ -38,6 +39,22 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 			$error = "Les mots de passes ne correspondent pas.";
 		}
 	}
+
+	// Fonction pour changer le mail
+	if(isset($_POST['confirmMail'])) {
+		global $a;
+		global $mysqli;
+		if(password_verify($_POST['pwd'], $a['password'])) {
+			$query = "UPDATE user SET email = '" . $_POST['newmail'] . "' WHERE username = '" . $_SESSION['newsession'] . "'";
+			$update = $mysqli->prepare($query);
+			$update->execute();
+			$errorMail = "E-Mail modifié avec succès !";
+		} elseif (!password_verify($_POST['pwd'], $a['password'])) {
+			$errorMail = "Mauvais mot de passe.";
+		} else {
+			$errorMail = "Something went wrong ...";
+		}
+	}
 ?>
 <html lang="fr">
 	<head>
@@ -53,7 +70,10 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 		?>
 		<a href="./deconnexion.php">Deconnexion</a>
 		<?php } ?>
-		<h2>Profil de <?= $a['username'] ?></h2>
+		<div class="pp" style="display: flex;">
+			<h2>Profil de <?= $a['username'] ?></h2>
+			<img src="<?php echo $a['pp'] ?>" height="100px" width="100px">
+		</div>
 		<div>Quelques informations : </div>
     	<ul>
 			<?php
@@ -75,7 +95,17 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 			<input type="submit" name="confirmButton" value="Valider">
 		</form>
 
-		<?php echo $error; } ?>
+		<?php echo $error; ?>
+
+		<h3>Changer de mail :</h3>
+
+		<form method="POST">
+			<input type="email" name="newmail" placeholder="Nouveau mail" required /><br>
+			<input type="password" name="pwd" placeholder="Mot de passe" required /><br>
+			<input type="submit" name="confirmMail" value="Valider">
+		</form>
+
+		<?php echo $errorMail; } ?>
 
 		<ul>
 

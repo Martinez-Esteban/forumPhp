@@ -20,6 +20,11 @@ try{
     </head>
     <body>
         <?php
+        if(isset($_POST['profilPicture'])) {
+            $pp = $post = $_POST['profilPicture'];
+        } else {
+            $pp = "https://www.cournondanseattitude.fr/wp-content/uploads/2019/07/blank-profile-picture-973460_640.png";
+        }
 
         function verifyPassword($pdo) {
             if($_POST['password'] === $_POST['passwordVerified']) {
@@ -31,6 +36,8 @@ try{
         }
 
         function addUser($pdo) {
+            global $pp;
+
             $username = $_POST['username'];
             $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
             $mail = $_POST['mail'];
@@ -41,7 +48,7 @@ try{
                 'username' => $username,
                 'password' => $password,
                 'mail' => $mail,
-                'pp' => "https://www.cournondanseattitude.fr/wp-content/uploads/2019/07/blank-profile-picture-973460_640.png",
+                'pp' => $pp,
             ];
 
             $results = $pdo->prepare($query);
@@ -53,7 +60,7 @@ try{
             <input type="password" name="password" required placeholder="Mot de passe*"><br>
             <input type="password" name="passwordVerified" required placeholder="Confirmation du mdp*"><br>
             <input type="email" name="mail" required placeholder="E-mail*"><br>
-            <input type="text" name="profilPicture" placeholder="lien vers la photo de profil"><br>
+            <input type="file" name="profilPicture"><br>
             <input type="submit" name="button" value="Créer un compte"><br>
         </form>
         <a href="./login.php">Login</a>
