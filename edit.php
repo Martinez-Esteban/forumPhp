@@ -41,3 +41,5 @@ if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
     <textarea name="article_contenu" required><?php echo $result['description'] ?></textarea><br />
     <input type="submit" value="Modifier l'article" />
 </form>
+
+<a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a>
