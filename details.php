@@ -29,7 +29,7 @@ if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
     if($article->rowCount() == 1) {
         $a = $article->fetch();
         $uid = $a['userId'];
-        $query = $pdo->prepare("SELECT username FROM user WHERE id = '". $uid . "'");
+        $query = $pdo->prepare("SELECT username, pp FROM user WHERE id = '". $uid . "'");
         $query->execute();
         $user_name = $query->fetch();
     } else {
@@ -49,6 +49,7 @@ if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
     <h1><?= $a['title'] ?></h1>
     <p><?= $a['description'] ?></p>
     <p><i><?= $a['date'] ?></i></p> - <a href=<?php echo '"account.php?userId=' . $uid . '"' ?>><b><?= $user_name['username'] ?></b></a>
+    <br><img src="<?php echo $user_name['pp'] ?>" height="50px" width="50px">
     <?php 
 
     if($_SESSION['newsession'] == $user_name['username'] || $_SESSION['newsession'] == 'demo') { ?>

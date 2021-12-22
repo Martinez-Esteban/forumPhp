@@ -6,6 +6,8 @@ if ($_SESSION["newsession"]) {
 } else {
     header('location: ../login.php');
 }
+$user = $mysqli->query("SELECT pp FROM user WHERE username = '" . $_SESSION['newsession'] . "'");
+$pp = $user->fetch();
 $articles = $mysqli->query('SELECT * FROM articles ORDER BY date DESC');
 ?>
 
@@ -16,6 +18,10 @@ $articles = $mysqli->query('SELECT * FROM articles ORDER BY date DESC');
     <meta charset="utf-8">
 </head>
 <body>
+    <div style="display: flex">
+        <img src="<?= $pp['pp'] ?>" height="50px" width="50px">
+        <h2><?= $_SESSION['newsession'];?></h2>
+    </div>
     <ul>
         <li><a href="./account.php">Profil</a>
         <li><a href="./new.php">Nouvel Article</a>

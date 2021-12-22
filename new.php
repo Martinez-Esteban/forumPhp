@@ -52,8 +52,8 @@ if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
 </head>
 <body>
     <form method="POST">
-        <input type="text" name="article_titre" placeholder="Titre de l'article" required/><br />
-        <textarea name="article_contenu" placeholder="Contenu de l'article" required></textarea><br />
+        <input type="text" name="article_titre" placeholder="Titre de l'article" autofocus required/><br />
+        <textarea name="article_contenu" placeholder="Contenu de l'article" style="width: 300px; height: 150px;" required></textarea><br />
         <input type="submit" value="Publier l'article" />
     </form>
     <br />

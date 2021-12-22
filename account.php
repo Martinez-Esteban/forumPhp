@@ -22,6 +22,7 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 	
 	$error = "";
 	$errorMail = "";
+	$ppMsg = "";
 
 	// Fonction pour changer le mot de passe
 	if(isset($_POST['confirmButton'])) {
@@ -55,6 +56,7 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 			$errorMail = "Something went wrong ...";
 		}
 	}
+
 ?>
 <html lang="fr">
 	<head>
@@ -64,10 +66,8 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 		<title>Profil de <?php echo $a['username'] ?></title>
 	<head>
 	<body>
-		<a href="./home.php">retour</a>
-		<?php
-		if(empty($_GET['userId']) || $_SESSION['newsession'] == $a['username']) {
-		?>
+		<a href="./home.php">Acceuil</a>
+		<?php if(empty($_GET['userId']) || $_SESSION['newsession'] == $a['username']) { ?>
 		<a href="./deconnexion.php">Deconnexion</a>
 		<?php } ?>
 		<div class="pp" style="display: flex;">
@@ -119,7 +119,10 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 
 			<form method="POST" action=<?php echo '"dlpost.php?articleId=' . $post['articleId'] . '"' ?>>
                 <input type="submit" name=<?php echo '"delete_post_' . $post['articleId'] . '"' ?> value="Supprimer l'article"></input> 
-            </form></li>
+            </form>
+			<form method="POST" action=<?php echo '"edit.php?title=' . $post['title'] . '&content=' . $post['description'] . '&uid=' . $post['userId'] . '&articleId=' . $post['articleId'] . '"' ?>>
+				<input type="submit" name="edit" value="Modifier l'article">
+			</form></li>
 
 			<?php } } ?>
 
