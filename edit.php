@@ -37,7 +37,7 @@ if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
 ?>
 
 <form method="POST">
-    <input type="text" name="article_titre" value=<?php echo $result['title'] ?> required/><br />
-    <textarea name="article_contenu" value=<?php echo $result['description'] ?> required></textarea><br />
+    <input type="text" name="article_titre" value="<?php echo $result['title'] ?>" required/><br />
+    <textarea name="article_contenu" required><?php echo $result['description'] ?></textarea><br />
     <input type="submit" value="Modifier l'article" />
 </form>

@@ -56,8 +56,8 @@ if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
         <form method="POST" action=<?php echo '"dlpost.php?articleId=' . $a['articleId'] . '"' ?>>
             <input type="submit" name=<?php echo '"delete_post_' . $a['articleId'] . '"' ?> value="Supprimer l'article">
         </form>
-        <form method="POST" action=<?php echo '"edit.php?title=' . $a['title'] . ';content=' . $a['description'] . ';uid=' . $a['userId'] . ';articleId=' . $a['articleId'] . '"' ?>>
-            <input type="submit" name=<?php echo '"edit_post_' . $a['articleId'] . '"' ?> value="Modifier l'article">
+        <form method="POST" action=<?php echo '"edit.php?title=' . $a['title'] . '&content=' . $a['description'] . '&uid=' . $a['userId'] . '&articleId=' . $a['articleId'] . '"' ?>>
+            <input type="submit" name="edit" value="Modifier l'article">
         </form>
 
     <?php } ?>
