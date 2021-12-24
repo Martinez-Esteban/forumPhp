@@ -1,3 +1,6 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 <?php
 $dsn = "mysql:host=localhost:3306;dbname=forum";
 $username = "root";
@@ -16,7 +19,7 @@ try{
 <html>
     <head>
         <title>login</title>
-        <link href='./login.css' rel='stylesheet'>
+        <link href='css/login.css' rel='stylesheet'>
     </head>
     <body>
         <?php
@@ -40,11 +43,17 @@ try{
         
        
         ?>
+        <div class="background">
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
         <form class="registerForm" method="POST">
+            <h3>Connectez vous ! :)</h3>
             <input type="text" name="username" placeholder="Nom d'utilisateur" required><br>
             <input type="password" name="password" placeholder="Mot de passe" required><br>
             <input type="submit" name="button" value="Connexion"><br>
+            <a href="./register.php">Register</a>
         </form>
-        <a href="./register.php">Register</a>
+        
     </body>
 </html>

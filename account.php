@@ -97,30 +97,60 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='css/account.css' rel='stylesheet'>
 		<title>Profil de <?php echo $a['username'] ?></title>
 	<head>
 	<body>
-		<a href="./home.php">Acceuil</a>
-		<?php if(empty($_GET['userId']) || $_SESSION['newsession'] == $a['username']) { ?>
-		<a href="./deconnexion.php">Deconnexion</a>
-		<?php } ?>
-		<div class="pp" style="display: flex;">
-			<h2>Profil de <?= $a['username'] ?></h2>
-			<img src="<?php echo $a['pp'] ?>" height="100px" width="100px">
-		</div>
-		<div>Quelques informations : </div>
-    	<ul>
-			<?php
-			if(empty($_GET['userId']) || $_SESSION['newsession'] == 'demo' || $_SESSION['newsession'] == $a['username']) {
-			?>
-            <li>Votre mail est : <b><?php echo $a['email'] ?></b></li>
+		<nav class="nav">
+			<ul>
+			<li class="home"><a href="./home.php">Accueil</a></li>
+			<?php if(empty($_GET['userId']) || $_SESSION['newsession'] == $a['username']) { ?>
+			<li class="deco"><a href="./deconnexion.php">Deconnexion</a></li>
 			<?php } ?>
-            <li>Date de création du compte : <b><?php echo $a['creationDate'] ?></b></li>
-		</ul>
+		</nav>
+		<div class="container">
+			<h2>Profil de <?= $a['username'] ?></h2><br><br><br><br><br>
+			<div class="avatar-flip">
+				<img src="<?php echo $a['pp'] ?>" height="150" width="150">
+				<img src="http://i1112.photobucket.com/albums/k497/animalsbeingdicks/abd-3-12-2015.gif~original" height="150" width="150">
+  			</div>
+			<h3>Vos informations</h3>
+			<ul>
+				<?php
+				if(empty($_GET['userId']) || $_SESSION['newsession'] == 'demo' || $_SESSION['newsession'] == $a['username']) {
+				?>
+				<p>Votre mail est : <b><?php echo $a['email'] ?></b></p>
+				<?php } ?>
+				<p>Date de création du compte : <b><?php echo $a['creationDate'] ?></b></p>
+			</ul>		
+		</div>
+		<div class="container"> 
+			<ul>
+
+			<?php
+			$postsQuery = $mysqli->query("SELECT * FROM articles WHERE userId = '" . $a['id'] . "' ORDER BY date DESC");
+			while($post = $postsQuery->fetch()) { ?>
+
+				<li><b><?= $post['title']; ?></b><br><?= $post['description']; ?><br><i><?= $post['date']; ?></i>
+
+				<?php if($_SESSION['newsession'] == 'demo' || $_SESSION['newsession'] == $a['username']) { ?>
+
+				<form method="POST" action=<?php echo '"dlpost.php?articleId=' . $post['articleId'] . '"' ?>>
+					<input type="submit" name=<?php echo '"delete_post_' . $post['articleId'] . '"' ?> value="Supprimer l'article"></input> 
+				</form>
+				<form method="POST" action=<?php echo '"edit.php?title=' . $post['title'] . '&content=' . $post['description'] . '&uid=' . $post['userId'] . '&articleId=' . $post['articleId'] . '"' ?>>
+					<input type="submit" name="edit" value="Modifier l'article">
+				</form></li>
+
+				<?php } } ?>
+
+			</ul>
+		</div>
+		
 		<?php
 		if(empty($_GET['userId']) || $_SESSION['newsession'] == $a['username']) {
 		?>
-		<h3>Changer de mot de passe :</h3>
+		<h3 style="color:white;">Changer de mot de passe :</h3>
 
 		<form method="POST">
 			<input type="password" name="oldpwd" placeholder="Ancien mot de passe" required /><br>
@@ -131,41 +161,20 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 
 		<?php echo $error; ?>
 
-		<h3>Changer de mail :</h3>
+		<h3 style="color:white;">Changer de mail :</h3>
 
 		<form method="POST">
 			<input type="email" name="newmail" placeholder="Nouveau mail" required /><br>
 			<input type="password" name="pwd" placeholder="Mot de passe" required /><br>
 			<input type="submit" name="confirmMail" value="Valider">
 		</form>
-
+		<h3 style="color:white;">Changer de photo de profile:</h3>
 		<form method="POST" enctype="multipart/form-data">
 			<input type="file" name="pp" placeholder="Nouvelle PP" /><br>
 			<input type="submit" name="validProfil" value="Valider">
 		</form>
 	
 		<?php echo $errorMail; } ?>
-
-		<ul>
-
-		<?php
-		$postsQuery = $mysqli->query("SELECT * FROM articles WHERE userId = '" . $a['id'] . "' ORDER BY date DESC");
-		while($post = $postsQuery->fetch()) { ?>
-
-			<li><b><?= $post['title']; ?></b><br><?= $post['description']; ?><br><i><?= $post['date']; ?></i>
-
-			<?php if($_SESSION['newsession'] == 'demo' || $_SESSION['newsession'] == $a['username']) { ?>
-
-			<form method="POST" action=<?php echo '"dlpost.php?articleId=' . $post['articleId'] . '"' ?>>
-                <input type="submit" name=<?php echo '"delete_post_' . $post['articleId'] . '"' ?> value="Supprimer l'article"></input> 
-            </form>
-			<form method="POST" action=<?php echo '"edit.php?title=' . $post['title'] . '&content=' . $post['description'] . '&uid=' . $post['userId'] . '&articleId=' . $post['articleId'] . '"' ?>>
-				<input type="submit" name="edit" value="Modifier l'article">
-			</form></li>
-
-			<?php } } ?>
-
-		</ul>
-
+		
 	</body>
 </html>

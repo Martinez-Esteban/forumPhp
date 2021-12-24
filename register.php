@@ -1,3 +1,6 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
 <?php
 $dsn = "mysql:host=localhost:3306;dbname=forum";
 $username = "root";
@@ -16,7 +19,7 @@ try{
 <html>
     <head>
         <title>Register</title>
-        <link href='./register.css' rel='stylesheet'>
+        <link href='/css/register.css' rel='stylesheet'>
     </head>
     <body>
         <?php
@@ -55,13 +58,19 @@ try{
             $results->execute($datas);
         }
         ?>
+        <div class="background">
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
         <form class="registerForm" method="POST" onsubmit="<?=verifyPassword($pdo)?>">
+            <h3>Enregister vous ! :)</h3>
             <input type="text" name="username" required placeholder="Nom d'utilisateur*"><br>
             <input type="password" name="password" required placeholder="Mot de passe*"><br>
             <input type="password" name="passwordVerified" required placeholder="Confirmation du mdp*"><br>
             <input type="email" name="mail" required placeholder="E-mail*"><br>
-            <input type="submit" name="button" value="Créer un compte"><br>
+            <input type="submit" value="Créer un compte"><br>
+            <a href="./login.php">Login</a>
         </form>
-        <a href="./login.php">Login</a>
+        
     </body>
 </html>
