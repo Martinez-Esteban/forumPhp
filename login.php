@@ -51,8 +51,8 @@ try{
             <h3>Connectez vous ! :)</h3>
             <input type="text" name="username" placeholder="Nom d'utilisateur" required><br>
             <input type="password" name="password" placeholder="Mot de passe" required><br>
-            <input type="submit" name="button" value="Connexion"><br>
-            <a href="./register.php">Register</a>
+            <input type="submit" id="connexionButton" name="button" value="Connexion"><br>
+            <a href="./register.php" id="registerButton">Register</a>
         </form>
         
     </body>

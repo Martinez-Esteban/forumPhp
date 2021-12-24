@@ -83,6 +83,22 @@ margin-top: 8px;
 font-size: 14px;
 font-weight: 300;
 }
+input#createButton {
+    cursor: pointer;
+    transition: all .3s;
+}
+input#createButton:hover {
+    background-color: rgba(255,255,255,0.2);
+    transition: all .3s;
+}
+a#loginButton {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+a#loginButton:hover {
+    text-decoration: underline;
+}
 ::placeholder{
 color: #e5e5e5;
 }

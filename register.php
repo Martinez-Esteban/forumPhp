@@ -68,8 +68,8 @@ try{
             <input type="password" name="password" required placeholder="Mot de passe*"><br>
             <input type="password" name="passwordVerified" required placeholder="Confirmation du mdp*"><br>
             <input type="email" name="mail" required placeholder="E-mail*"><br>
-            <input type="submit" value="Créer un compte"><br>
-            <a href="./login.php">Login</a>
+            <input type="submit" id="createButton" value="Créer un compte"><br>
+            <a href="./login.php" id="loginButton">Login</a>
         </form>
         
     </body>

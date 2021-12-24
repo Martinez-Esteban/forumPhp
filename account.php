@@ -74,7 +74,6 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 
 	if(isset($_POST['validProfil'])){
 		try {
-			echo "try";
 			rrmdir("./images/forum/".$a['id']);
 		}catch(Exception $e){
 			echo "catch";
@@ -87,8 +86,6 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 		$query = "UPDATE user SET pp = '" . $path . "' WHERE username = '" . $_SESSION['newsession'] . "'";
 		$update = $mysqli->prepare($query);
 		$update->execute();
-		echo "ici";
-		
 	}
 
 ?>

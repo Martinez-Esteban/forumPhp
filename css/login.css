@@ -86,6 +86,22 @@ font-weight: 300;
 ::placeholder{
 color: #e5e5e5;
 }
+input#connexionButton {
+    cursor: pointer;
+    transition: all .3s;
+}
+input#connexionButton:hover {
+    background-color: rgba(255,255,255,0.2);
+    transition: all .3s;
+}
+a#registerButton {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+a#registerButton:hover {
+    text-decoration: underline;
+}
 button{
 margin-top: 50px;
 width: 100%;
