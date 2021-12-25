@@ -63,17 +63,17 @@ if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
                 <h1><?= $a['title'] ?></h1>
                 <p><?= $a['description'] ?></p>
                 <a href=<?php echo '"account.php?userId=' . $uid . '"' ?>><b><?= $user_name['username'] ?></b></a>
-
-                <?php 
-                    if($_SESSION['newsession'] == $user_name['username'] || $_SESSION['newsession'] == 'demo') { ?>
+            </div> <br><br>
+            <?php 
+                if($_SESSION['newsession'] == $user_name['username'] || $_SESSION['newsession'] == 'demo') { ?>
                     <form method="POST" action=<?php echo '"dlpost.php?articleId=' . $a['articleId'] . '"' ?>>
-                        <input type="submit" name=<?php echo '"delete_post_' . $a['articleId'] . '"' ?> value="Supprimer l'article">
+                        <input type="submit" class="btn_primary" name=<?php echo '"delete_post_' . $a['articleId'] . '"' ?> value="Supprimer l'article">
                     </form>
+                    <br><br>
                     <form method="POST" action=<?php echo '"edit.php?title=' . $a['title'] . '&content=' . $a['description'] . '&uid=' . $a['userId'] . '&articleId=' . $a['articleId'] . '"' ?>>
-                        <input type="submit" name="edit" value="Modifier l'article">
+                        <input type="submit" class="btn_primary" name="edit" value="Modifier l'article">
                     </form>
                 <?php } ?>
-            </div>
         </div>
     </div>
     <p><i><?= $a['date'] ?></i></p> - <a href=<?php echo '"account.php?userId=' . $uid . '"' ?>><b><?= $user_name['username'] ?></b></a>
