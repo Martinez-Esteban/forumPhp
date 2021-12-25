@@ -62,6 +62,9 @@ body {
 .container:hover .avatar-flip img:last-child {
   opacity: 1;
 }
+.container ul li {
+  list-style-type: none;
+}
 .avatar-flip {
   border-radius: 100px;
   overflow: hidden;
