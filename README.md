@@ -97,4 +97,4 @@ Il y a une page `Account` pour afficher les information du compte et pour les mo
         );
     </details>
 2. Dans un terminal **executez la commande** `php -S localhost:<port>`
-3. Dans votre navigateur **allez sur l'URL suivante** : `localhost:<port>/login.php` afin de vous connecter.
+3. Dans votre navigateur **allez sur l'URL suivante** : `localhost:<port>` afin de vous connecter.
