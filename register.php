@@ -63,6 +63,7 @@ try{
             <div class="shape"></div>
         </div>
         <form class="registerForm" method="POST" onsubmit="<?=verifyPassword($pdo)?>">
+            <h1 style="color:white;">Forum Ynov</h2>
             <h3>Enregister vous ! :)</h3>
             <input type="text" name="username" required placeholder="Nom d'utilisateur*"><br>
             <input type="password" name="password" required placeholder="Mot de passe*"><br>

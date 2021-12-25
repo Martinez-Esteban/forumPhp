@@ -48,6 +48,7 @@ try{
             <div class="shape"></div>
         </div>
         <form class="registerForm" method="POST">
+            <h1 style="color:white;">Forum Ynov</h2>
             <h3>Connectez vous ! :)</h3>
             <input type="text" name="username" placeholder="Nom d'utilisateur" required><br>
             <input type="password" name="password" placeholder="Mot de passe" required><br>
