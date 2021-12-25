@@ -28,6 +28,7 @@ if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
         $query->execute();
         $user_name = $query->fetch();
     } else {
+        header('location: ./home.php');
         die('Cet article n\'existe plus.');
     }
 } else {
