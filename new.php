@@ -61,7 +61,6 @@ if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
             <?php } ?>
             <li><a href="./deconnexion.php">logout</a>
             <li><a href="./account.php"><?=$_SESSION['newsession'];?></a>
-            <li><img src="<?= $result['pp'] ?>" height="40px" width="40px" margin-top="20px">
         </ul>
     </nav>
     <div class="background">
@@ -71,7 +70,7 @@ if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
     <form method="POST">
         <h3 style ="color:white;"> Création du post !</h3> 
         <input type="text" name="article_titre" placeholder="Titre de l'article" autofocus required/><br />
-        <textarea name="article_contenu" placeholder="Contenu de l'article" style="width: 400px; height: 150px; color: black; resize:none;" required></textarea><br />
+        <textarea name="article_contenu" placeholder="Contenu de l'article" style="width: 400px; height: 150px; color: black; resize:none; border-radius: 10px;" required></textarea><br />
         <input type="submit" value="Publier l'article" />
         <?php if(isset($message)) { echo $message; } ?>
     </form>

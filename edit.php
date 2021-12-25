@@ -63,7 +63,7 @@ if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
     <form method="POST">
         <h3 style ="color:white;"> Modification du post !</h3> 
         <input type="text" name="article_titre" value="<?php echo $result['title'] ?>" required/><br />
-        <textarea  name="article_contenu" style="width: 400px; height: 150px; color: black; resize:none;" autofocus required><?php echo $result['description'] ?></textarea><br />
+        <textarea  name="article_contenu" style="width: 400px; height: 150px; color: black; resize:none; border-radius: 10px;" autofocus required><?php echo $result['description'] ?></textarea><br />
         <input type="submit" value="Modifier l'article" />
     </form>
 </body>
