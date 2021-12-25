@@ -16,29 +16,41 @@ $articles = $mysqli->query('SELECT * FROM articles ORDER BY date DESC');
 <head>
     <title>Acceuil</title>
     <meta charset="utf-8">
+    <link href='css/home.css' rel='stylesheet'>
 </head>
 <body>
-    <div style="display: flex">
-        <img src="<?= $pp['pp'] ?>" height="50px" width="50px">
-        <h2><?= $_SESSION['newsession'];?></h2>
+    <nav class="nav">
+        <ul>
+            <li><a href="./new.php">Publier</a>
+            <?php
+            if($_SESSION['newsession'] == 'demo') { ?>
+            <li><a href="panelAdmin.php">Admin</a>
+            <?php } ?>
+            <li><a href="./deconnexion.php">logout</a>
+            <li><a href="./account.php"><?=$_SESSION['newsession'];?></a>
+            <li><img src="<?= $pp['pp'] ?>" height="40px" width="40px" margin-top="20px">
+        </ul>
+        
+        
     </div>
-    <ul>
-        <li><a href="./account.php">Profil</a>
-        <li><a href="./new.php">Nouvel Article</a>
-        <?php
-        if($_SESSION['newsession'] == 'demo') { ?>
-        <li><a href="panelAdmin.php">Administration</a>
-        <?php } ?>
-        <li><a href="./deconnexion.php">Déconnexion</a>
-    </ul>
-    <form action="search.php" method="GET">
-        <input id="search" name="search" type="text" placeholder="Type here">
-        <input id="submit" type="submit" value="Search">
-    </form>
-    <ul>
-        <?php while($a = $articles->fetch()) { ?>
-        <li><a href="details.php?articleId=<?= $a['articleId'] ?>"><?= $a['title'] ?> - <?= $a['date'] ?></a></li>
-        <?php } ?>
-    </ul>
+    </nav>
+    <div class="search">
+        <form action="search.php" method="GET">
+            <input id="search" name="search" type="text" placeholder="Recherchez un post !" class="search-bar">
+            <!-- <button class="search-btn" type="submit" value="Search"></button> --> 
+        </form><br><br>
+    </div>
+    <div class="grid">
+        
+            <?php while($a = $articles->fetch()) { ?>
+                <div style="border-radius:  20px ;">
+                    <li><a href="details.php?articleId=<?= $a['articleId'] ?>"><?= $a['title'] ?> - <?= $a['date'] ?></a>
+                        <h4 maxlength="20"><?= $a['description'] ?></h4>
+                    </li>
+
+                </div>
+            <?php } ?>
+        
+    </div>
 </body>
 </html>
