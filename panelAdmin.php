@@ -20,17 +20,35 @@ $afficher_user = $mysqli->query("SELECT * FROM user");
 
 $error = "";
 ?>
-<a href="home.php">Retour</a>
-<ul>
-    <?php while($a = $afficher_user->fetch()) { ?>
-        <li>
-            <a href="account.php?userId=<?= $a['id'] ?>"><?= $a['username'] ?></a> 
-            <form method="POST" action=<?php echo '"dluser.php?userId=' . $a['id'] . '"' ?>>
-                <input type="submit" name=<?php echo '"delete_user_' . $a['id'] . '"' ?> value="Delete user"></input> 
-            </form>
-        </li>
-    <?php } ?>
-</ul>
-
-
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Administration</title>
+    <meta charset="utf-8">
+    <link href='css/panelAdmin.css' rel='stylesheet'>
+</head>
+<body>
+    <nav class="nav">
+        <ul>
+            <li><a href="./new.php">Publier</a>
+            <?php
+            if($_SESSION['newsession'] == 'demo') { ?>
+            <li><a href="panelAdmin.php">Admin</a>
+            <?php } ?>
+            <li><a href="./deconnexion.php">logout</a>
+            <li><a href="./account.php"><?=$_SESSION['newsession'];?></a>
+        </ul>
+    </nav><br><br>
+    <div class="grid">
+        <?php while($a = $afficher_user->fetch()) { ?>
+            <div style="border-radius:  20px ;">
+                <h3><a href="account.php?userId=<?= $a['id'] ?>"><?= $a['username'] ?></a></h3> 
+                <form method="POST" action=<?php echo '"dluser.php?userId=' . $a['id'] . '"' ?>>
+                <img src="<?= $a['pp'] ?>" height="20px" width="20px" margin-top="20px"><br>
+                <input type="submit" class="btn_primary" name=<?php echo '"delete_user_' . $a['id'] . '"' ?> value="Delete user"></input>
+                <h2><?= $a['creationDate'] ?></h2>
+                </form>
+            </div>
+        <?php } ?>
+    </div>
+</body>

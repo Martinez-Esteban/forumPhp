@@ -39,14 +39,13 @@ $articles = $mysqli->query('SELECT * FROM articles ORDER BY date DESC');
     </div>
     <div class="grid">
         
-            <?php while($a = $articles->fetch()) { ?>
-                <div style="border-radius:  20px ;">
-                    <li><a href="details.php?articleId=<?= $a['articleId'] ?>"><?= $a['title'] ?> - <?= $a['date'] ?></a>
-                        <h4 maxlength="20"><?= $a['description'] ?></h4>
-                    </li>
-
-                </div>
-            <?php } ?>
+        <?php while($a = $articles->fetch()) { ?>
+            <div style="border-radius:  20px ;">
+                <li><a href="details.php?articleId=<?= $a['articleId'] ?>"><?= $a['title'] ?> - <?= $a['date'] ?></a>
+                    <h4 maxlength="20"><?= $a['description'] ?></h4>
+                </li>
+            </div>
+        <?php } ?>
         
     </div>
 </body>
