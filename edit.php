@@ -36,10 +36,34 @@ if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
 }
 ?>
 
-<form method="POST">
-    <input type="text" name="article_titre" value="<?php echo $result['title'] ?>" required/><br />
-    <textarea name="article_contenu" style="width: 300px; height: 150px;" autofocus required><?php echo $result['description'] ?></textarea><br />
-    <input type="submit" value="Modifier l'article" />
-</form>
 
-<a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nouvel Article</title>
+    <meta charset="utf-8">
+    <link href='css/new.css' rel='stylesheet'>
+</head>
+<body>
+    <nav class="nav">
+            <ul>
+                <li><a href="./home.php">Acceuil</a>
+                <?php
+                if($_SESSION['newsession'] == 'demo') { ?>
+                    <li><a href="panelAdmin.php">Admin</a>
+                <?php } ?>
+                <li><a href="./deconnexion.php">logout</a>
+                <li><a href="./account.php"><?=$_SESSION['newsession'];?></a>
+            </ul>
+    </nav>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form method="POST">
+        <h3 style ="color:white;"> Modification du post !</h3> 
+        <input type="text" name="article_titre" value="<?php echo $result['title'] ?>" required/><br />
+        <textarea  name="article_contenu" style="width: 400px; height: 150px; color: black; resize:none;" autofocus required><?php echo $result['description'] ?></textarea><br />
+        <input type="submit" value="Modifier l'article" />
+    </form>
+</body>
