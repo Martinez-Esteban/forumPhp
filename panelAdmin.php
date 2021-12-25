@@ -33,7 +33,7 @@ $error = "";
             <li><a href="./new.php">Publier</a>
             <?php
             if($_SESSION['newsession'] == 'demo') { ?>
-            <li><a href="panelAdmin.php">Admin</a>
+            <li><a href="home.php">Acceuil</a>
             <?php } ?>
             <li><a href="./deconnexion.php">logout</a>
             <li><a href="./account.php"><?=$_SESSION['newsession'];?></a>
