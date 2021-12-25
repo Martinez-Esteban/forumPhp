@@ -5,15 +5,10 @@ $password = "";
 
 session_start();
 if ($_SESSION["newsession"]) {
-?>
-    <hr>
-    <a href="./home.php">retour</a>
-    <hr>
-<?php
+
 } else {
     header('location: ../login.php');
 }
-
 try{
     $pdo = new PDO($dsn, $username, $password);
 } catch (PDOException $e){
@@ -44,23 +39,45 @@ if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
 <head>
     <title>Acceuil</title>
     <meta charset="utf-8">
+    <link href='css/details.css' rel='stylesheet'>
 </head>
 <body>
-    <h1><?= $a['title'] ?></h1>
-    <p><?= $a['description'] ?></p>
+    <nav class="nav">
+        <ul>
+            <li><a href="./home.php">Acceuil</a>
+            <?php
+            if($_SESSION['newsession'] == 'demo') { ?>
+            <li><a href="panelAdmin.php">Admin</a>
+            <?php } ?>
+            <li><a href="./deconnexion.php">logout</a>
+            <li><a href="./account.php"><?=$_SESSION['newsession'];?></a>
+        </ul>
+    </nav>
+    <div class="wrapper">
+        <div class="blog_post">
+            <div class="img_pod">
+                <img src="<?php echo $user_name['pp'] ?>" height="50px" width="50px">
+            </div>
+            <div class="container_copy">
+                <h3><?= $a['date'] ?></h3>
+                <h1><?= $a['title'] ?></h1>
+                <p><?= $a['description'] ?></p>
+                <a href=<?php echo '"account.php?userId=' . $uid . '"' ?>><b><?= $user_name['username'] ?></b></a>
+
+                <?php 
+                    if($_SESSION['newsession'] == $user_name['username'] || $_SESSION['newsession'] == 'demo') { ?>
+                    <form method="POST" action=<?php echo '"dlpost.php?articleId=' . $a['articleId'] . '"' ?>>
+                        <input type="submit" name=<?php echo '"delete_post_' . $a['articleId'] . '"' ?> value="Supprimer l'article">
+                    </form>
+                    <form method="POST" action=<?php echo '"edit.php?title=' . $a['title'] . '&content=' . $a['description'] . '&uid=' . $a['userId'] . '&articleId=' . $a['articleId'] . '"' ?>>
+                        <input type="submit" name="edit" value="Modifier l'article">
+                    </form>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
     <p><i><?= $a['date'] ?></i></p> - <a href=<?php echo '"account.php?userId=' . $uid . '"' ?>><b><?= $user_name['username'] ?></b></a>
-    <br><img src="<?php echo $user_name['pp'] ?>" height="50px" width="50px">
-    <?php 
-
-    if($_SESSION['newsession'] == $user_name['username'] || $_SESSION['newsession'] == 'demo') { ?>
-
-        <form method="POST" action=<?php echo '"dlpost.php?articleId=' . $a['articleId'] . '"' ?>>
-            <input type="submit" name=<?php echo '"delete_post_' . $a['articleId'] . '"' ?> value="Supprimer l'article">
-        </form>
-        <form method="POST" action=<?php echo '"edit.php?title=' . $a['title'] . '&content=' . $a['description'] . '&uid=' . $a['userId'] . '&articleId=' . $a['articleId'] . '"' ?>>
-            <input type="submit" name="edit" value="Modifier l'article">
-        </form>
-
-    <?php } ?>
+    <br>
+   
 </body>
 </html>
