@@ -69,6 +69,7 @@ if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
         <div class="shape"></div>
     </div>
     <form method="POST">
+        <h3 style ="color:white;"> Création du post !</h3> 
         <input type="text" name="article_titre" placeholder="Titre de l'article" autofocus required/><br />
         <textarea name="article_contenu" placeholder="Contenu de l'article" style="width: 400px; height: 150px; color: black; resize:none;" required></textarea><br />
         <input type="submit" value="Publier l'article" />
