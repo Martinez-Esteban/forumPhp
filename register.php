@@ -19,6 +19,7 @@ try{
 <html>
     <head>
         <title>Register</title>
+        <link rel="icon" type="image/png" href="./css/icon.jpg" />
         <link href='/css/register.css' rel='stylesheet'>
     </head>
     <body>

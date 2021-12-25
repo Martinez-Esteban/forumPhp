@@ -95,6 +95,7 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href='css/account.css' rel='stylesheet'>
+		<link rel="icon" type="image/png" href="./css/icon.jpg" />
 		<title>Profil de <?php echo $a['username'] ?></title>
 	<head>
 	<body>

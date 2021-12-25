@@ -40,6 +40,7 @@ if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
 <head>
     <title>Acceuil</title>
     <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="./css/icon.jpg" />
     <link href='css/details.css' rel='stylesheet'>
 </head>
 <body>

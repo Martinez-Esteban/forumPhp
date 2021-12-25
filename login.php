@@ -19,6 +19,7 @@ try{
 <html>
     <head>
         <title>login</title>
+        <link rel="icon" type="image/png" href="./css/icon.jpg" />
         <link href='css/login.css' rel='stylesheet'>
     </head>
     <body>

@@ -48,6 +48,7 @@ if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
 <html>
 <head>
     <title>Nouvel Article</title>
+    <link rel="icon" type="image/png" href="./css/icon.jpg" />
     <meta charset="utf-8">
     <link href='css/new.css' rel='stylesheet'>
 </head>

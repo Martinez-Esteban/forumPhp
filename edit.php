@@ -40,7 +40,8 @@ if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Nouvel Article</title>
+    <title>Édition de post</title>
+    <link rel="icon" type="image/png" href="./css/icon.jpg" />
     <meta charset="utf-8">
     <link href='css/new.css' rel='stylesheet'>
 </head>

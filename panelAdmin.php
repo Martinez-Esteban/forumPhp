@@ -24,6 +24,7 @@ $error = "";
 <html>
 <head>
     <title>Administration</title>
+    <link rel="icon" type="image/png" href="./css/icon.jpg" />
     <meta charset="utf-8">
     <link href='css/panelAdmin.css' rel='stylesheet'>
 </head>

@@ -13,6 +13,7 @@ $mysqli = new PDO("mysql:host=127.0.0.1;dbname=forum;charset=utf8", "root", "");
 <html>
 <head>
     <title>Article(s) recherché(s)</title>
+    <link rel="icon" type="image/png" href="./css/icon.jpg" />
     <meta charset="utf-8">
     <link href='css/new.css' rel='stylesheet'>
 </head>

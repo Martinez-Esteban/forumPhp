@@ -15,6 +15,7 @@ $articles = $mysqli->query('SELECT * FROM articles ORDER BY date DESC');
 <html>
 <head>
     <title>Acceuil</title>
+    <link rel="icon" type="image/png" href="./css/icon.jpg" />
     <meta charset="utf-8">
     <link href='css/home.css' rel='stylesheet'>
 </head>
