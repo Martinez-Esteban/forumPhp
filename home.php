@@ -30,9 +30,6 @@ $articles = $mysqli->query('SELECT * FROM articles ORDER BY date DESC');
             <li><a href="./account.php"><?=$_SESSION['newsession'];?></a>
             <li><img src="<?= $pp['pp'] ?>" height="40px" width="40px" margin-top="20px">
         </ul>
-        
-        
-    </div>
     </nav>
     <div class="search">
         <form action="search.php" method="GET">
