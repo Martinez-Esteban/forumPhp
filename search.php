@@ -19,17 +19,17 @@ $mysqli = new PDO("mysql:host=127.0.0.1;dbname=forum;charset=utf8", "root", "");
 <body>
 
     <nav class="nav">
-            <ul>
-                <li><a href="./new.php">Publier</a>
-                <?php
+        <ul>
+            <li><a href="./new.php">Publier</a>
+            <?php
                 if($_SESSION['newsession'] == 'demo') { ?>
                 <li><a href="panelAdmin.php">Admin</a>
-                <?php } ?>
-                <li><a href="./deconnexion.php">logout</a>
-                <li><a href="./account.php"><?=$_SESSION['newsession'];?></a>
-                <li><img src="<?= $pp['pp'] ?>" height="40px" width="40px" margin-top="20px">
-            </ul>
-        </nav>
+            <?php } ?>
+            <li><a href="./deconnexion.php">logout</a>
+            <li><a href="./account.php"><?=$_SESSION['newsession'];?></a>
+            <li><img src="<?= $pp['pp'] ?>" height="40px" width="40px" margin-top="20px">
+        </ul>
+    </nav>
 </body>
 
 <?php
