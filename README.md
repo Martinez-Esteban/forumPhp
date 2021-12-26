@@ -28,6 +28,7 @@ Elle possède deux tables :
 > - **email** *(mail de l'utilisateur)*
 > - **creationDate** *(date de création du compte)*
 > - **pp** *(chemin d'accès à la photo de profil)*
+> - **admin** *(détermine si un utilisateur est administrateur)*
 
 > **2. ARTICLES**
 > - **articleId** *(id du post)*
@@ -85,15 +86,16 @@ Il y a une page `Account` pour afficher les information du compte et pour les mo
         )<br>
         DROP TABLE IF EXISTS `user`;
         CREATE TABLE IF NOT EXISTS `user` (
-            `id` int(11) NOT NULL AUTO_INCREMENT,
-            `username` varchar(20) NOT NULL,
-            `password` varchar(255) NOT NULL,
-            `email` varchar(80) NOT NULL,
-            `creationDate` date NOT NULL,
-            `pp` varchar(2083) NOT NULL DEFAULT 'https://www.cournondanseattitude.fr/wp-content/uploads/2019/07/blank-profile-picture-973460_640.png',
-            PRIMARY KEY (`id`),
-            UNIQUE KEY `username` (`username`),
-            UNIQUE KEY `email` (`email`)
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `username` varchar(20) NOT NULL,
+        `password` varchar(255) NOT NULL,
+        `email` varchar(80) NOT NULL,
+        `creationDate` date NOT NULL,
+        `pp` varchar(2083) NOT NULL DEFAULT 'https://www.cournondanseattitude.fr/wp-content/uploads/2019/07/blank-profile-picture-973460_640.png',
+        `admin` tinyint(1) NOT NULL DEFAULT '0',
+        PRIMARY KEY (`id`),
+        UNIQUE KEY `username` (`username`),
+        UNIQUE KEY `email` (`email`)
         );
     </details>
 2. Dans un terminal **executez la commande** `php -S localhost:<port>`
