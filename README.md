@@ -59,7 +59,8 @@ Une page `New` vous permettra d'écrire un nouvel un nouvel article, et vous ret
 
 
 
-![](https://i.imgur.com/VWyV6bQ.png)
+![](https://i.imgur.com/HdLreZ0.png)
+
 
 
 
@@ -69,7 +70,8 @@ Il y a une page `Account` pour afficher les information du compte et pour les mo
 
 De plus afin d'assurer la modération du forum un panel admin est mise en place.
 
-![](https://i.imgur.com/eQnTR7Z.png)
+![](https://i.imgur.com/S1tvt8s.png)
+
 
 
 ## Accéder au forum
