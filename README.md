@@ -42,26 +42,35 @@ Elle possède deux tables :
 
 Le site est composé de plusieurs pages, il y a en premier la page `Home` où les articles sont classés selon leur date de publication. 
 
-![](https://i.imgur.com/zAOHlg5.png)
+![](https://i.imgur.com/TjoNYCs.png)
+
 
 
 Il y a une page `Login` et une page `Register` qui permettent à l'utilisateur de créer un compte et de s'y connecter.
 
-![](https://i.imgur.com/eXYioV2.png)
+![](https://i.imgur.com/ie3eIHj.png)
 
-![](https://i.imgur.com/nEbbsy9.png)
+
+![](https://i.imgur.com/aayp9Gt.png)
 
 
 Une page `New` vous permettra d'écrire un nouvel un nouvel article, et vous retrouverez les details d'un article sur la page `Details`. Il y a également une page `Edit` pour modifier votre article.
 
-![](https://i.imgur.com/dsBB7cF.png)
 
-![](https://i.imgur.com/11trXXL.png)
+
+
+![](https://i.imgur.com/VWyV6bQ.png)
+
 
 
 Il y a une page `Account` pour afficher les information du compte et pour les modifier.
 
 ![](https://i.imgur.com/kvRlxjR.png)
+
+De plus afin d'assurer la modération du forum un panel admin est mise en place.
+
+![](https://i.imgur.com/eQnTR7Z.png)
+
 
 ## Accéder au forum
 
