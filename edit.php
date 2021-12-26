@@ -44,7 +44,7 @@ if(isset($_POST['article_titre'], $_POST['article_contenu'])) {
 <body>
     <nav class="nav">
             <ul>
-                <li><a href="./home.php">Acceuil</a>
+                <li><a href="./home.php">Accueil</a>
                 <?php
                 if($admin['admin'] == 1) { ?>
                     <li><a href="panelAdmin.php">Admin</a>

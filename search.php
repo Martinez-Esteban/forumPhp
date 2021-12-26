@@ -24,6 +24,7 @@ if ($_SESSION["newsession"]) {
 
     <nav class="nav">
         <ul>
+            <li><a href="./home.php">Accueil</a>
             <li><a href="./new.php">Publier</a>
             <?php
                 if($admin['admin'] == 1) { ?>
@@ -31,7 +32,6 @@ if ($_SESSION["newsession"]) {
             <?php } ?>
             <li><a href="./deconnexion.php">logout</a>
             <li><a href="./account.php"><?=$_SESSION['newsession'];?></a>
-            <li><img src="<?= $pp['pp'] ?>" height="40px" width="40px" margin-top="20px">
         </ul>
     </nav>
 </body>

@@ -33,7 +33,7 @@ if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Acceuil</title>
+    <title>Accueil</title>
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="./css/icon.jpg" />
     <link href='css/details.css' rel='stylesheet'>
@@ -41,7 +41,7 @@ if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
 <body>
     <nav class="nav">
         <ul>
-            <li><a href="./home.php">Acceuil</a>
+            <li><a href="./home.php">Accueil</a>
             <?php
             if($admin['admin'] == 1) { ?>
             <li><a href="panelAdmin.php">Admin</a>
