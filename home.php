@@ -6,11 +6,14 @@ if ($_SESSION["newsession"]) {
 } else {
     header('location: ../login.php');
 }
-$user = $mysqli->query("SELECT pp FROM user WHERE username = '" . $_SESSION['newsession'] . "'");
-$queryAdmin = $mysqli->query("SELECT admin FROM user WHERE username = '" . $_SESSION['newsession'] . "'");
+$user = $mysqli->prepare("SELECT pp FROM user WHERE username = '" . $_SESSION['newsession'] . "'");
+$user->execute();
+$queryAdmin = $mysqli->prepare("SELECT admin FROM user WHERE username = '" . $_SESSION['newsession'] . "'");
+$queryAdmin->execute();
 $admin = $queryAdmin->fetch();
 $pp = $user->fetch();
-$articles = $mysqli->query('SELECT * FROM articles ORDER BY date DESC');
+$articles = $mysqli->prepare('SELECT * FROM articles ORDER BY date DESC');
+$articles->execute();
 ?>
 
 <!DOCTYPE html>
