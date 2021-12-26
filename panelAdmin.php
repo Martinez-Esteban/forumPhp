@@ -36,7 +36,7 @@ $error = "";
             <li><a href="./new.php">Publier</a>
             <?php
             if($admin['admin'] == 1) { ?>
-            <li><a href="home.php">Acceuil</a>
+            <li><a href="home.php">Accueil</a>
             <?php } ?>
             <li><a href="./deconnexion.php">logout</a>
             <li><a href="./account.php"><?=$_SESSION['newsession'];?></a>
