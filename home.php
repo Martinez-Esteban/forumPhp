@@ -7,6 +7,8 @@ if ($_SESSION["newsession"]) {
     header('location: ../login.php');
 }
 $user = $mysqli->query("SELECT pp FROM user WHERE username = '" . $_SESSION['newsession'] . "'");
+$queryAdmin = $mysqli->query("SELECT admin FROM user WHERE username = '" . $_SESSION['newsession'] . "'");
+$admin = $queryAdmin->fetch();
 $pp = $user->fetch();
 $articles = $mysqli->query('SELECT * FROM articles ORDER BY date DESC');
 ?>
@@ -24,7 +26,7 @@ $articles = $mysqli->query('SELECT * FROM articles ORDER BY date DESC');
         <ul>
             <li><a href="./new.php">Publier</a>
             <?php
-            if($_SESSION['newsession'] == 'demo') { ?>
+            if($admin['admin'] == 1) { ?>
             <li><a href="panelAdmin.php">Admin</a>
             <?php } ?>
             <li><a href="./deconnexion.php">logout</a>

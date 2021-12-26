@@ -1,7 +1,8 @@
 <?php
 $mysqli = new PDO("mysql:host=127.0.0.1;dbname=forum;charset=utf8", "root", "");
 session_start();
-
+$queryAdmin = $mysqli->query("SELECT admin FROM user WHERE username = '" . $_SESSION['newsession'] . "'");
+$admin = $queryAdmin->fetch();
 function rrmdir($dir) { 
 	if (is_dir($dir)) { 
 	$objects = scandir($dir);
@@ -115,7 +116,7 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 			<h3>Vos informations</h3>
 			<ul>
 				<?php
-				if(empty($_GET['userId']) || $_SESSION['newsession'] == 'demo' || $_SESSION['newsession'] == $a['username']) {
+				if(empty($_GET['userId']) || $admin['admin'] == 1 || $_SESSION['newsession'] == $a['username']) {
 				?>
 				<p>Votre mail est : <b><?php echo $a['email'] ?></b></p>
 				<?php } ?>
@@ -131,7 +132,7 @@ if(isset($_GET['userId']) AND !empty($_GET['userId'])) {
 
 				<li><b><?= $post['title']; ?></b><br><?= $post['description']; ?><br><i><?= $post['date']; ?></i>
 
-				<?php if($_SESSION['newsession'] == 'demo' || $_SESSION['newsession'] == $a['username']) { ?>
+				<?php if($admin['admin'] == 1 || $_SESSION['newsession'] == $a['username']) { ?>
 
 				<form method="POST" action=<?php echo '"dlpost.php?articleId=' . $post['articleId'] . '"' ?>>
 					<input type="submit" name=<?php echo '"delete_post_' . $post['articleId'] . '"' ?> value="Supprimer l'article"></input> 

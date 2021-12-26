@@ -1,11 +1,14 @@
 <?php 
 session_start();
+$mysqli = new PDO("mysql:host=127.0.0.1;dbname=forum;charset=utf8", "root", "");
+$queryAdmin = $mysqli->query("SELECT admin FROM user WHERE username = '" . $_SESSION['newsession'] . "'");
+$admin = $queryAdmin->fetch();
 if ($_SESSION["newsession"]) {
 
 } else {
     header('location: ../login.php');
 }
-$mysqli = new PDO("mysql:host=127.0.0.1;dbname=forum;charset=utf8", "root", "");
+
 
 ?>
 
@@ -23,7 +26,7 @@ $mysqli = new PDO("mysql:host=127.0.0.1;dbname=forum;charset=utf8", "root", "");
         <ul>
             <li><a href="./new.php">Publier</a>
             <?php
-                if($_SESSION['newsession'] == 'demo') { ?>
+                if($admin['admin'] == 1) { ?>
                 <li><a href="panelAdmin.php">Admin</a>
             <?php } ?>
             <li><a href="./deconnexion.php">logout</a>

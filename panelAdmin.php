@@ -1,7 +1,9 @@
 <?php
 $mysqli = new PDO("mysql:host=127.0.0.1;dbname=forum;charset=utf8", "root", "");
 session_start();
-if ($_SESSION["newsession"] == "demo") {
+$queryAdmin = $mysqli->query("SELECT admin FROM user WHERE username = '" . $_SESSION['newsession'] . "'");
+$admin = $queryAdmin->fetch();
+if ($admin["admin"] == 1) {
 
 } else {
     header('location: ../home.php');
@@ -33,7 +35,7 @@ $error = "";
         <ul>
             <li><a href="./new.php">Publier</a>
             <?php
-            if($_SESSION['newsession'] == 'demo') { ?>
+            if($admin['admin'] == 1) { ?>
             <li><a href="home.php">Acceuil</a>
             <?php } ?>
             <li><a href="./deconnexion.php">logout</a>

@@ -1,30 +1,24 @@
 <?php
-$dsn = "mysql:host=localhost:3306;dbname=forum";
-$username = "root";
-$password = "";
-
 session_start();
+$mysqli = new PDO("mysql:host=127.0.0.1;dbname=forum;charset=utf8", "root", "");
+$queryAdmin = $mysqli->query("SELECT admin FROM user WHERE username = '" . $_SESSION['newsession'] . "'");
+$admin = $queryAdmin->fetch();
+
 if ($_SESSION["newsession"]) {
 
 } else {
     header('location: ../login.php');
 }
-try{
-    $pdo = new PDO($dsn, $username, $password);
-} catch (PDOException $e){
-    echo $e->getMessage();
-    die();
-}
 
 // On récupère l'article passé en paramètre
 if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
     $get_article_id = htmlspecialchars($_GET['articleId']);
-    $article = $pdo->prepare("SELECT * FROM articles WHERE articleId = '" . $get_article_id . "'");
+    $article = $mysqli->prepare("SELECT * FROM articles WHERE articleId = '" . $get_article_id . "'");
     $article->execute();
     if($article->rowCount() == 1) {
         $a = $article->fetch();
         $uid = $a['userId'];
-        $query = $pdo->prepare("SELECT username, pp FROM user WHERE id = '". $uid . "'");
+        $query = $mysqli->prepare("SELECT username, pp FROM user WHERE id = '". $uid . "'");
         $query->execute();
         $user_name = $query->fetch();
     } else {
@@ -35,6 +29,7 @@ if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
     die('Erreur');
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +43,7 @@ if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
         <ul>
             <li><a href="./home.php">Acceuil</a>
             <?php
-            if($_SESSION['newsession'] == 'demo') { ?>
+            if($admin['admin'] == 1) { ?>
             <li><a href="panelAdmin.php">Admin</a>
             <?php } ?>
             <li><a href="./deconnexion.php">logout</a>
@@ -67,7 +62,7 @@ if(isset($_GET['articleId']) AND !empty($_GET['articleId'])) {
                 <a href=<?php echo '"account.php?userId=' . $uid . '"' ?>><b><?= $user_name['username'] ?></b></a>
             </div> <br><br>
             <?php 
-                if($_SESSION['newsession'] == $user_name['username'] || $_SESSION['newsession'] == 'demo') { ?>
+                if($_SESSION['newsession'] == $user_name['username'] || $admin['admin'] == 1) { ?>
                     <form method="POST" action=<?php echo '"dlpost.php?articleId=' . $a['articleId'] . '"' ?>>
                         <input type="submit" class="btn_primary" name=<?php echo '"delete_post_' . $a['articleId'] . '"' ?> value="Supprimer l'article">
                     </form>
